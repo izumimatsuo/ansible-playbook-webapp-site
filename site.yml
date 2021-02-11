@@ -1,0 +1,23 @@
+---
+- name: deploy default roles
+  hosts: all
+  roles:
+    - ansible-role-osinit
+
+- import_playbook: cert_deploy.yml
+
+- name: deploy lb (load balancer) servers
+  hosts: lbservers
+  roles:
+    - ansible-role-nginx
+
+- name: deploy application servers
+  hosts: appservers
+  roles:
+    - ansible-role-docker
+    - ansible-role-stretcher
+
+- name: deploy database servers
+  hosts: rdbservers
+  roles:
+    - ansible-role-postgresql

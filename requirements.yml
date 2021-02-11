@@ -1,0 +1,6 @@
+---
+- src: https://github.com/izumimatsuo/ansible-role-docker
+- src: https://github.com/izumimatsuo/ansible-role-nginx
+- src: https://github.com/izumimatsuo/ansible-role-osinit
+- src: https://github.com/izumimatsuo/ansible-role-postgresql
+- src: https://github.com/izumimatsuo/ansible-role-stretcher

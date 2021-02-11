@@ -1,0 +1,7 @@
+---
+# group vars file for lb(load balancer) servers
+nginx_server_name: 'web.example.com'
+nginx_listen_port: 443
+nginx_ssl_on: yes
+nginx_proxy_backends: ['192.168.33.21:5000', '192.168.33.22:5000']
+nginx_cluster_info: {virtual_ipaddr: '192.168.33.10', check_interface: 'eth1'}

@@ -1,0 +1,15 @@
+#
+# inventory
+#
+
+[lbservers] # VIP 192.168.33.10
+lb1 ansible_host=192.168.33.11
+lb2 ansible_host=192.168.33.12
+
+[appservers]
+app1 ansible_host=192.168.33.21
+app2 ansible_host=192.168.33.22
+
+[rdbservers] # VIP 192.168.33.30
+rdb1 ansible_host=192.168.33.31
+rdb2 ansible_host=192.168.33.32

@@ -1,0 +1,54 @@
+---
+- name: setup virtual machine
+  hosts: all
+  become: true
+  vars:
+    admin_user: 'ansible'
+    env_selinux: disabled
+    update_all_packages: no
+  pre_tasks:
+    - name: update all packages
+      yum:
+        name: '*'
+        state: latest
+      when: update_all_packages
+      notify: reboot server
+  tasks:
+    - name: set hostname
+      hostname:
+        name: "{{ inventory_hostname }}"
+
+    - name: install default package
+      yum:
+        name:
+          - bash-completion
+          - bind-utils
+          - curl
+          - lsof
+          - net-tools
+          - python3
+          - wget
+          - yum-utils
+
+    - name: add ssh admin_user
+      user:
+        name: '{{ admin_user }}'
+      notify: reboot server
+
+    - name: add ssh key
+      authorized_key:
+        user: '{{ admin_user }}'
+        key: "{{ lookup('file', '.ssh/id_rsa_ansible.pub') }}"
+
+    - name: add sudoers
+      lineinfile:
+        path: '/etc/sudoers.d/{{ admin_user }}'
+        create: yes
+        mode: '0600'
+        regexp: '^%{{ admin_user }}'
+        line: '%{{ admin_user }} ALL=(ALL) NOPASSWD: ALL'
+        validate: '/usr/sbin/visudo -cf %s'
+
+  handlers:
+    - name: reboot server
+      reboot:

@@ -1,0 +1,4 @@
+---
+# group vars file for app servers
+docker_swarm_manager_hostnames: ['app1']
+stretcher_autorun_manifest: 'https://izumimatsuo.github.io/ansible-playbook-webapp-site/deploy-latest.yml'

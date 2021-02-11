@@ -1,0 +1,39 @@
+---
+- name: certificate deploy
+  hosts: lbservers
+  become: true
+  vars:
+    now_date: "{{ lookup('pipe','date +%Y%m%d') }}"
+    cert_files:
+        - server.key
+        - server.crt
+  pre_tasks:
+    - name: detect nginx service
+      stat:
+        path: /etc/nginx
+      register: nginx_service
+  tasks:
+    - name: create directory
+      file:
+        path: /etc/nginx/cert
+        state: directory
+        mode: '0755'
+    - name: upload cert files
+      copy:
+        src: 'files/{{ item }}'
+        dest: '/etc/nginx/cert/{{ now_date }}_{{ item }}'
+        mode: '0644'
+      with_items: '{{ cert_files }}'
+    - name: deploy certificate
+      file:
+        src: '/etc/nginx/cert/{{ now_date }}_{{ item }}'
+        dest: '/etc/nginx/cert/{{ item }}'
+        state: link
+      with_items: '{{ cert_files }}'
+      notify: reload nginx service
+  handlers:
+    - name: reload nginx service
+      service:
+        name: nginx
+        state: reloaded
+      when: nginx_service.stat.exists

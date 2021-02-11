@@ -1,0 +1,17 @@
+---
+src: https://izumimatsuo.github.io/app-flask-healthcheck/healthcheck-api.tar.gz
+checksum: c01b884b810afe775c4dc5bbc15503a4
+dest: /var/lib/stretcher
+commands:
+  pre:
+    - echo 'start'
+  post:
+    - echo 'done'
+    - pwd
+    - cat /var/lib/stretcher/healthcheck-api/healthcheck-api.tar | docker load
+  success:
+    - echo 'success'
+    - cat > /var/log/stretcher
+  failure:
+    - echo 'failure'
+    - cat > /var/log/stretcher
