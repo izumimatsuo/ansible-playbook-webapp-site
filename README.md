@@ -40,9 +40,11 @@ $ source .venv/bin/activate
 アプリケーションを起動して動作検証します
 
 ```
-(.venv) $ vagrant ssh app1
-[vagrant@app1 ~]$ sudo docker stack deploy -c /var/lib/stretcher/healthcheck-api/docker-compose.yml sample
-[vagrant@app1 ~]$ exit
+(.venv) $ ssh -F .ssh/config 192.168.33.21 sudo docker stack deploy -c /var/lib/stretcher/healthcheck-api/docker-compose.yml sample
+Ignoring unsupported options: restart
+
+Creating network sample_default
+Creating service sample_app
 
 (.venv) $ curl -k -i https://192.168.33.10/healthcheck
 HTTP/1.1 200 OK
@@ -98,8 +100,8 @@ X-XSS-Protection: 1; mode=block
 
 ### Application サーバ
 
-- docker swarm を適用
-- アプリケーションをコンテナで実行（複数サーバを集約したデプロイやスケールが可能）
+- docker swarm を適用して 1+1（Manager/Worker）クラスタを構成
+- docker swarm Manager ノードで複数サーバでのアプリケーション起動・停止やスケールを一元的に実行
 - stretcher を適用してアプリケーションの自動デプロイ（コンテナイメージのインポート）を実行
 
 #### node
