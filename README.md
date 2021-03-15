@@ -94,7 +94,6 @@ X-XSS-Protection: 1; mode=block
 | 項目名                 | 設定値                                |
 | ---------------------- | ------------------------------------- |
 | nginx_server_name      | web.example.com                       |
-| nginx_ssl_on           | yes                                   |
 | nginx_proxy_backends   | ['192.168.33.21:5000', '192.168.33.22:5000'] |
 | nginx_cluster_info     | {virtual_ipaddr: '192.168.33.10', check_interface: 'eth1'} |
 
