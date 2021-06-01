@@ -4,8 +4,9 @@
   become: true
   vars:
     admin_user: 'ansible'
-    env_selinux: disabled
     update_all_packages: no
+    install_default_package: no
+
   pre_tasks:
     - name: update all packages
       yum:
@@ -13,10 +14,6 @@
         state: latest
       when: update_all_packages
       notify: reboot server
-  tasks:
-    - name: set hostname
-      hostname:
-        name: "{{ inventory_hostname }}"
 
     - name: install default package
       yum:
@@ -29,6 +26,12 @@
           - python3
           - wget
           - yum-utils
+      when: install_default_package
+
+  tasks:
+    - name: set hostname
+      hostname:
+        name: "{{ inventory_hostname }}"
 
     - name: add ssh admin_user
       user:

@@ -36,17 +36,6 @@ def test_sudoers(host):
 def test_disabled_selinux(host):
     assert 'Disabled' == host.check_output('getenforce')
 
-# curl,net-tools,... など、全サーバ共通のパッケージがインストールされている
-def test_installed_default_package(host):
-    assert host.package('bash-completion').is_installed
-    assert host.package('bind-utils').is_installed
-    assert host.package('curl').is_installed
-    assert host.package('lsof').is_installed
-    assert host.package('net-tools').is_installed
-    assert host.package('python3').is_installed
-    assert host.package('wget').is_installed
-    assert host.package('yum-utils').is_installed
-
 # sshd,chronyd,... など起動すべきサービスが起動している
 def test_running_default_service(host):
     assert host.service('auditd').is_running
