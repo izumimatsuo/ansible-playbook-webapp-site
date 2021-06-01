@@ -82,6 +82,7 @@ X-XSS-Protection: 1; mode=block
 
 #### node
 
+- lb_vip ['192.168.33.10']
 - lb1 ['192.168.33.11']
 - lb2 ['192.168.33.12']
 
@@ -94,8 +95,8 @@ X-XSS-Protection: 1; mode=block
 | 項目名                 | 設定値                                |
 | ---------------------- | ------------------------------------- |
 | nginx_server_name      | web.example.com                       |
-| nginx_proxy_backends   | ['192.168.33.21:5000', '192.168.33.22:5000'] |
-| nginx_cluster_info     | {virtual_ipaddr: '192.168.33.10', check_interface: 'eth1'} |
+| nginx_proxy_backends   | ['app1:5000', 'app2:5000'] |
+| nginx_cluster_info     | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
 
 ### Application サーバ
 
@@ -128,6 +129,7 @@ X-XSS-Protection: 1; mode=block
 
 #### node
 
+- rdb_vip ['192.168.33.30']
 - rdb1 ['192.168.33.31']
 - rdb2 ['192.168.33.32']
 
@@ -140,4 +142,4 @@ X-XSS-Protection: 1; mode=block
 | 項目名                 | 設定値                                         |
 | ---------------------- | ---------------------------------------------- |
 | pgsql_cluster_hostnames | ['rdb1', 'rdb2'] |
-| pgsql_cluster_info | {virtual_ipaddr: '192.168.33.30', check_interface: 'eth1'} |
+| pgsql_cluster_info | {virtual_ipaddr: '{{ rdb_vip }}', check_interface: 'eth1'} |
