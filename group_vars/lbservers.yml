@@ -1,5 +1,4 @@
 ---
 # group vars file for lb(load balancer) servers
-nginx_server_name: 'web.example.com'
-nginx_proxy_backends: ['app1:5000', 'app2:5000']
-nginx_cluster_info: {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'}
+haproxy_backend_servers: ['app1:5000', 'app2:5000']
+haproxy_cluster_info: {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'}

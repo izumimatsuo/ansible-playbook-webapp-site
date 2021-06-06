@@ -48,12 +48,10 @@ Creating service sample_app
 
 (.venv) $ curl -k -i https://192.168.33.10/healthcheck
 HTTP/1.1 200 OK
-Server: nginx
 Date: Thu, 11 Feb 2021 02:36:39 GMT
 Content-Type: application/json
 Content-Length: 23
-Connection: keep-alive
-X-Frame-Options: SAMEORIGIN
+X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
 X-XSS-Protection: 1; mode=block
 
@@ -76,7 +74,7 @@ X-XSS-Protection: 1; mode=block
 
 ### Load Balancer (Reverse Proxy サーバ）
 
-- nginx を適用
+- haproxy を適用
 - SSL通信を終端してバックエンドの Application サーバへバランシング
 - keepalived を適用して 1+1（Active/Standby）クラスタを構成
 
@@ -88,15 +86,14 @@ X-XSS-Protection: 1; mode=block
 
 #### roles
 
-- [nginx](https://github.com/izumimatsuo/ansible-role-nginx.git)
+- [haproxy](https://github.com/izumimatsuo/ansible-role-haproxy.git)
 
 #### vars
 
 | 項目名                 | 設定値                                |
 | ---------------------- | ------------------------------------- |
-| nginx_server_name      | web.example.com                       |
-| nginx_proxy_backends   | ['app1:5000', 'app2:5000'] |
-| nginx_cluster_info     | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
+| haproxy_backend_servers | ['app1:5000', 'app2:5000'] |
+| haproxy_cluster_info     | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
 
 ### Application サーバ
 

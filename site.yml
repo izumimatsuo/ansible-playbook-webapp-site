@@ -9,7 +9,7 @@
 - name: deploy lb (load balancer) servers
   hosts: lbservers
   roles:
-    - ansible-role-nginx
+    - ansible-role-haproxy
 
 - name: deploy application servers
   hosts: appservers

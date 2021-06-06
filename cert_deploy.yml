@@ -5,35 +5,34 @@
   vars:
     now_date: "{{ lookup('pipe','date +%Y%m%d') }}"
     cert_files:
-        - server.key
-        - server.crt
+        - server.pem
   pre_tasks:
-    - name: detect nginx service
+    - name: detect haproxy service
       stat:
-        path: /etc/nginx
-      register: nginx_service
+        path: /etc/haproxy
+      register: haproxy_service
   tasks:
     - name: create directory
       file:
-        path: /etc/nginx/cert
+        path: /etc/haproxy/cert
         state: directory
         mode: '0755'
     - name: upload cert files
       copy:
         src: 'files/{{ item }}'
-        dest: '/etc/nginx/cert/{{ now_date }}_{{ item }}'
+        dest: '/etc/haproxy/cert/{{ now_date }}_{{ item }}'
         mode: '0644'
       with_items: '{{ cert_files }}'
     - name: deploy certificate
       file:
-        src: '/etc/nginx/cert/{{ now_date }}_{{ item }}'
-        dest: '/etc/nginx/cert/{{ item }}'
+        src: '/etc/haproxy/cert/{{ now_date }}_{{ item }}'
+        dest: '/etc/haproxy/cert/{{ item }}'
         state: link
       with_items: '{{ cert_files }}'
-      notify: reload nginx service
+      notify: reload haproxy service
   handlers:
-    - name: reload nginx service
+    - name: reload haproxy service
       service:
-        name: nginx
+        name: haproxy
         state: reloaded
-      when: nginx_service.stat.exists
+      when: haproxy_service.stat.exists
