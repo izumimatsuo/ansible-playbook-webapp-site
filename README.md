@@ -32,9 +32,9 @@ $ source .venv/bin/activate
 正しく環境構築できているか検証します
 
 ```
-(.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://lbservers' tests/test_default.py tests/test_lbserver.py
-(.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://appservers' tests/test_default.py tests/test_appserver.py
-(.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://rdbservers' tests/test_default.py tests/test_rdbserver.py
+(.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://lbservers' tests/test_defaults.py tests/test_lbservers.py
+(.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://appservers' tests/test_defaults.py tests/test_appservers.py
+(.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://rdbservers' tests/test_defaults.py tests/test_rdbservers.py
 ```
 
 アプリケーションを起動して動作検証します
@@ -87,13 +87,14 @@ X-XSS-Protection: 1; mode=block
 #### roles
 
 - [haproxy](https://github.com/izumimatsuo/ansible-role-haproxy.git)
+- [keepalived](https://github.com/izumimatsuo/ansible-role-keepalived.git)
 
 #### vars
 
 | 項目名                 | 設定値                                |
 | ---------------------- | ------------------------------------- |
 | haproxy_backend_servers | ['app1:5000', 'app2:5000'] |
-| haproxy_cluster_info     | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
+| keepalived_cluster_info     | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
 
 ### Application サーバ
 
