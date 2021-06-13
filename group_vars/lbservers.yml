@@ -1,4 +1,4 @@
 ---
 # group vars file for lb(load balancer) servers
 haproxy_backend_servers: ['app1:5000', 'app2:5000']
-haproxy_cluster_info: {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'}
+keepalived_cluster_info: {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'}

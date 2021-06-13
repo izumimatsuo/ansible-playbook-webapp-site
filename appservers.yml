@@ -1,0 +1,7 @@
+---
+- name: deploy application servers
+  hosts: appservers
+  roles:
+    - ansible-role-osinit
+    - ansible-role-docker
+    - ansible-role-stretcher

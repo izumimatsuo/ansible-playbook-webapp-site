@@ -1,9 +1,7 @@
 ---
-- import_playbook: cert_deploy.yml
-
 - name: deploy lb (load balancer) servers
   hosts: lbservers
   roles:
     - ansible-role-osinit
     - ansible-role-haproxy
-    - ansible-role-haproxy-cluster
+    - ansible-role-keepalived

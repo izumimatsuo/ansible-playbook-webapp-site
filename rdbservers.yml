@@ -1,0 +1,6 @@
+---
+- name: deploy database servers
+  hosts: rdbservers
+  roles:
+    - ansible-role-osinit
+    - ansible-role-postgresql
