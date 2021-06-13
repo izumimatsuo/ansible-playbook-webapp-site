@@ -1,38 +1,34 @@
 ---
 - name: certificate deploy
   hosts: lbservers
-  become: true
   vars:
     now_date: "{{ lookup('pipe','date +%Y%m%d') }}"
+    server_process: haproxy
+    cert_directory: /etc/haproxy/cert
     cert_files:
         - server.pem
-  pre_tasks:
-    - name: detect haproxy service
-      stat:
-        path: /etc/haproxy
-      register: haproxy_service
   tasks:
-    - name: create directory
+    - name: create cert directory
       file:
-        path: /etc/haproxy/cert
+        path: '{{ cert_directory }}'
         state: directory
         mode: '0755'
     - name: upload cert files
       copy:
         src: 'files/{{ item }}'
-        dest: '/etc/haproxy/cert/{{ now_date }}_{{ item }}'
+        dest: '{{ cert_directory }}/{{ now_date }}_{{ item }}'
         mode: '0644'
       with_items: '{{ cert_files }}'
     - name: deploy certificate
       file:
-        src: '/etc/haproxy/cert/{{ now_date }}_{{ item }}'
-        dest: '/etc/haproxy/cert/{{ item }}'
+        src: '{{ cert_directory }}/{{ now_date }}_{{ item }}'
+        dest: '{{ cert_directory }}/{{ item }}'
         state: link
+        force: yes
       with_items: '{{ cert_files }}'
-      notify: reload haproxy service
+      notify: 'reload {{ server_process }} service'
   handlers:
-    - name: reload haproxy service
+    - name: 'reload {{ server_process }} service'
       service:
-        name: haproxy
+        name: '{{ server_process }}'
         state: reloaded
-      when: haproxy_service.stat.exists
