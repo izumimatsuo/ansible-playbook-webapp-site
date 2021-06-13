@@ -51,9 +51,6 @@ HTTP/1.1 200 OK
 Date: Thu, 11 Feb 2021 02:36:39 GMT
 Content-Type: application/json
 Content-Length: 23
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-X-XSS-Protection: 1; mode=block
 
 {
   "status": "pass"
