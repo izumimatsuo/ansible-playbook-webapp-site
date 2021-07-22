@@ -24,4 +24,4 @@ def test_keepalived_state_and_vip(host):
 
 # 公開サービスが意図したポートでリッスンしている
 def test_listen_default_port(host):
-    assert host.socket('tcp://0.0.0.0:443').is_listening
+    assert host.socket('tcp://0.0.0.0:80').is_listening

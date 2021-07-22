@@ -10,7 +10,6 @@ Web アプリケーションをホストするための基本的なインフラ�
 ## 動作検証の方法
 
 - vagrant/virtualbox, python3, git, ssh, curl が利用できる環境を用意してください
-- SSL証明書は自己署名証明書です（Web ブラウザでアクセスする際に警告がでます）
 
 以下で環境を構築します
 
@@ -46,7 +45,7 @@ Ignoring unsupported options: restart
 Creating network sample_default
 Creating service sample_app
 
-(.venv) $ curl -k -i https://192.168.33.10/healthcheck
+(.venv) $ curl -i http://192.168.33.10/healthcheck
 HTTP/1.1 200 OK
 Date: Thu, 11 Feb 2021 02:36:39 GMT
 Content-Type: application/json
@@ -72,14 +71,13 @@ Content-Length: 23
 ### Load Balancer (Reverse Proxy サーバ）
 
 - haproxy を適用
-- SSL通信を終端してバックエンドの Application サーバへバランシング
 - keepalived を適用して 1+1（Active/Standby）クラスタを構成
 
 #### node
 
-- lb_vip ['192.168.33.10']
-- lb1 ['192.168.33.11']
-- lb2 ['192.168.33.12']
+- lb_vip 192.168.33.10
+- lb1 192.168.33.11
+- lb2 192.168.33.12
 
 #### roles
 
@@ -90,19 +88,19 @@ Content-Length: 23
 
 | 項目名                 | 設定値                                |
 | ---------------------- | ------------------------------------- |
-| haproxy_backend_servers | ['app1:5000', 'app2:5000'] |
+| haproxy_backend_groups | [{name: 'default', listen_port: 5000, protocol: 'http'}] |
+| haproxy_backend_servers | {default: ['app1', 'app2']} |
 | keepalived_cluster_info     | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
 
 ### Application サーバ
 
 - docker swarm を適用して 1+1（Manager/Worker）クラスタを構成
-- docker swarm Manager ノードで複数サーバでのアプリケーション起動・停止やスケールを一元的に実行
 - stretcher を適用してアプリケーションの自動デプロイ（コンテナイメージのインポート）を実行
 
 #### node
 
-- app1 ['192.168.33.21']
-- app2 ['192.168.33.22']
+- app1 192.168.33.21
+- app2 192.168.33.22
 
 #### roles
 
@@ -120,13 +118,12 @@ Content-Length: 23
 
 - postgresql を適用
 - pacemaker/corosync を適用して 1+1（Master/Standby）クラスタを構成
-- データはサーバ間で同期レプリケーションを実行
 
 #### node
 
-- rdb_vip ['192.168.33.30']
-- rdb1 ['192.168.33.31']
-- rdb2 ['192.168.33.32']
+- rdb_vip 192.168.33.30
+- rdb1 192.168.33.31
+- rdb2 192.168.33.32
 
 #### roles
 
