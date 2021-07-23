@@ -86,11 +86,11 @@ Content-Length: 23
 
 #### vars
 
-| 項目名                 | 設定値                                |
-| ---------------------- | ------------------------------------- |
-| haproxy_backend_groups | [{name: 'default', listen_port: 5000, protocol: 'http'}] |
-| haproxy_backend_servers | {default: ['app1', 'app2']} |
-| keepalived_cluster_info     | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
+| 項目名                  | 設定値                                |
+| ----------------------- | ------------------------------------- |
+| haproxy_backend_groups  | [{name: 'default', listen_port: 5000, protocol: 'http'}] |
+| haproxy_backend_servers | {default: "{{ groups['appservers'] }}"} |
+| keepalived_cluster_info | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
 
 ### Application サーバ
 
@@ -133,5 +133,5 @@ Content-Length: 23
 
 | 項目名                 | 設定値                                         |
 | ---------------------- | ---------------------------------------------- |
-| pgsql_cluster_hostnames | ['rdb1', 'rdb2'] |
+| pgsql_cluster_hostnames | "{{ groups['rdbservers'] }}" |
 | pgsql_cluster_info | {virtual_ipaddr: '{{ rdb_vip }}', check_interface: 'eth1'} |
