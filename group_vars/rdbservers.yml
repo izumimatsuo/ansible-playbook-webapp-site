@@ -1,4 +1,4 @@
 ---
 # group vars file for rdb servers
-pgsql_cluster_hostnames: ['rdb1', 'rdb2']
+pgsql_cluster_hostnames: "{{ groups['rdbservers'] }}"
 pgsql_cluster_info: {virtual_ipaddr: '{{ rdb_vip }}', check_interface: 'eth1'}
