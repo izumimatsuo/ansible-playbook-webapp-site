@@ -81,6 +81,7 @@ Content-Length: 23
 
 #### roles
 
+- [osinit](https://github.com/izumimatsuo/ansible-role-osinit)
 - [haproxy](https://github.com/izumimatsuo/ansible-role-haproxy.git)
 - [keepalived](https://github.com/izumimatsuo/ansible-role-keepalived.git)
 
@@ -104,6 +105,7 @@ Content-Length: 23
 
 #### roles
 
+- [osinit](https://github.com/izumimatsuo/ansible-role-osinit)
 - [docker](https://github.com/izumimatsuo/ansible-role-docker.git)
 - [stretcher](https://github.com/izumimatsuo/ansible-role-stretcher.git)
 
@@ -127,6 +129,7 @@ Content-Length: 23
 
 #### roles
 
+- [osinit](https://github.com/izumimatsuo/ansible-role-osinit)
 - [postgresql](https://github.com/izumimatsuo/ansible-role-postgresql.git)
 
 #### vars
