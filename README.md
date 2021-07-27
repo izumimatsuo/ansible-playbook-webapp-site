@@ -89,8 +89,7 @@ Content-Length: 23
 
 | 項目名                  | 設定値                                |
 | ----------------------- | ------------------------------------- |
-| haproxy_backend_groups  | [{name: 'default', listen_port: 5000, protocol: 'http'}] |
-| haproxy_backend_servers | {default: "{{ groups['appservers'] }}"} |
+| haproxy_backend_targets | [{name: 'default', listen_port: 5000, protocol: 'http', servers: "{{ groups['appservers'] }}"}] |
 | keepalived_cluster_info | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
 
 ### Application サーバ
