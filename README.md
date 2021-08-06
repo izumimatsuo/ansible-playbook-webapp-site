@@ -81,7 +81,6 @@ Content-Length: 23
 
 #### roles
 
-- [osinit](https://github.com/izumimatsuo/ansible-role-osinit)
 - [haproxy](https://github.com/izumimatsuo/ansible-role-haproxy.git)
 - [keepalived](https://github.com/izumimatsuo/ansible-role-keepalived.git)
 
@@ -104,7 +103,6 @@ Content-Length: 23
 
 #### roles
 
-- [osinit](https://github.com/izumimatsuo/ansible-role-osinit)
 - [docker](https://github.com/izumimatsuo/ansible-role-docker.git)
 - [stretcher](https://github.com/izumimatsuo/ansible-role-stretcher.git)
 
@@ -118,7 +116,7 @@ Content-Length: 23
 ### Database サーバ
 
 - postgresql を適用
-- pacemaker/corosync を適用して 1+1（Master/Standby）クラスタを構成
+- pacemaker を適用して 1+1（Master/Standby）クラスタを構成
 
 #### node
 
@@ -128,12 +126,10 @@ Content-Length: 23
 
 #### roles
 
-- [osinit](https://github.com/izumimatsuo/ansible-role-osinit)
 - [postgresql](https://github.com/izumimatsuo/ansible-role-postgresql.git)
 
 #### vars
 
 | 項目名                 | 設定値                                         |
 | ---------------------- | ---------------------------------------------- |
-| pgsql_cluster_hostnames | "{{ groups['rdbservers'] }}" |
-| pgsql_cluster_info | {virtual_ipaddr: '{{ rdb_vip }}', check_interface: 'eth1'} |
+| pacemaker_cluster_info | {virtual_ipaddr: '{{ rdb_vip }}', check_interface: 'eth1'} |
