@@ -110,7 +110,6 @@ Content-Length: 23
 
 | 項目名                     | 設定値                                         |
 | -------------------------- | ---------------------------------------------- |
-| docker_swarm_manager_hostnames | ['app1'] |
 | stretcher_autorun_manifest | ```https://izumimatsuo.github.io/ansible-playbook-webapp-site/deploy-latest.yml``` |
 
 ### Database サーバ
