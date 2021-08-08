@@ -2,8 +2,6 @@
 - name: deploy lb (load balancer) servers
   hosts: lbservers
   roles:
-    - role: ansible-role-osinit
-      tags: osinit
     - role: ansible-role-haproxy
       tags: haproxy
     - role: ansible-role-keepalived

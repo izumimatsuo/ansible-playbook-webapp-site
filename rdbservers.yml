@@ -2,7 +2,5 @@
 - name: deploy database servers
   hosts: rdbservers
   roles:
-    - role: ansible-role-osinit
-      tags: osinit
     - role: ansible-role-postgresql
       tags: postgresql
