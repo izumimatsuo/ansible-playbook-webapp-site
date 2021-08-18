@@ -132,4 +132,4 @@ Content-Length: 23
 
 | 項目名                 | 設定値                                         |
 | ---------------------- | ---------------------------------------------- |
-| pgsql_pacemaker_cluster_info.master.virtual_ipaddr | 192.168.33.30 |
+| pgsql_pacemaker_cluster_info | {master: {virtual_ipaddr: '192.168.33.30'}} |
