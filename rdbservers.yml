@@ -2,5 +2,7 @@
 - name: deploy database servers
   hosts: rdbservers
   roles:
+    - role: ansible-role-pacemaker
+      tags: pacemaker
     - role: ansible-role-postgresql
       tags: postgresql

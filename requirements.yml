@@ -4,4 +4,5 @@
 - src: https://github.com/izumimatsuo/ansible-role-keepalived
 - src: https://github.com/izumimatsuo/ansible-role-osinit
 - src: https://github.com/izumimatsuo/ansible-role-postgresql
+- src: https://github.com/izumimatsuo/ansible-role-pacemaker
 - src: https://github.com/izumimatsuo/ansible-role-stretcher
