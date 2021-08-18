@@ -89,7 +89,7 @@ Content-Length: 23
 | 項目名                  | 設定値                                |
 | ----------------------- | ------------------------------------- |
 | haproxy_backend_targets | [{name: 'default', listen_port: 5000, protocol: 'http', servers: "{{ groups['appservers'] }}"}] |
-| keepalived_cluster_info | {virtual_ipaddr: '{{ lb_vip }}', check_interface: 'eth1'} |
+| keepalived_cluster_info | {virtual_ipaddr: '192.168.33.10', check_interface: 'eth1'} |
 
 ### Application サーバ
 
@@ -125,10 +125,11 @@ Content-Length: 23
 
 #### roles
 
+- [pacemaker](https://github.com/izumimatsuo/ansible-role-pacemaker.git)
 - [postgresql](https://github.com/izumimatsuo/ansible-role-postgresql.git)
 
 #### vars
 
 | 項目名                 | 設定値                                         |
 | ---------------------- | ---------------------------------------------- |
-| pacemaker_cluster_info | {virtual_ipaddr: '{{ rdb_vip }}', check_interface: 'eth1'} |
+| pgsql_pacemaker_cluster_info.master.virtual_ipaddr | 192.168.33.30 |
