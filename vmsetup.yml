@@ -4,37 +4,7 @@
   become: true
 
   vars:
-    admin_user: 'ansible'
     env_update_all_packages: no
-      #    env_add_packages:
-      #      - bash-completion
-      #      - bind-utils
-      #      - curl
-      #      - lsof
-      #      - net-tools
-      #      - python3
-      #      - wget
-      #      - yum-utils
-
-
-  pre_tasks:
-    - name: add ssh admin_user
-      user:
-        name: '{{ admin_user }}'
-
-    - name: add ssh key
-      authorized_key:
-        user: '{{ admin_user }}'
-        key: "{{ lookup('file', '.ssh/id_rsa_ansible.pub') }}"
-
-    - name: add sudoers
-      lineinfile:
-        path: '/etc/sudoers.d/{{ admin_user }}'
-        create: yes
-        mode: '0600'
-        regexp: '^%{{ admin_user }}'
-        line: '%{{ admin_user }} ALL=(ALL) NOPASSWD: ALL'
-        validate: '/usr/sbin/visudo -cf %s'
 
   roles:
     - ansible-role-osinit
