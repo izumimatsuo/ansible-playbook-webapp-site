@@ -1,4 +1,4 @@
 ---
-- import_playbook: lbservers.yml
-- import_playbook: appservers.yml
 - import_playbook: rdbservers.yml
+- import_playbook: appservers.yml
+- import_playbook: lbservers.yml

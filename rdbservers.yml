@@ -4,5 +4,6 @@
   roles:
     - role: ansible-role-pacemaker
       tags: pacemaker
+      when: ansible_play_hosts | length > 1
     - role: ansible-role-postgresql
       tags: postgresql

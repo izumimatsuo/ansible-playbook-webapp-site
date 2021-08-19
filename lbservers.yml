@@ -6,3 +6,4 @@
       tags: haproxy
     - role: ansible-role-keepalived
       tags: keepalived
+      when: ansible_play_hosts | length > 1
