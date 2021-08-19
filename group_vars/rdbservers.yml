@@ -1,3 +1,3 @@
 ---
 # group vars file for rdb servers
-pgsql_pacemaker_cluster_info: {master: {virtual_ipaddr: '{{ rdb_vip }}'}}
+pgsql_pacemaker_cluster_info: {master: {virtual_ipaddr: '{{ rdb_master_vip }}'}}

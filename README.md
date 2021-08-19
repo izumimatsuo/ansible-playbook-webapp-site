@@ -75,7 +75,7 @@ Content-Length: 23
 
 #### node
 
-- lb_vip 192.168.33.10
+- lb_master_vip 192.168.33.10
 - lb1 192.168.33.11
 - lb2 192.168.33.12
 
@@ -119,7 +119,7 @@ Content-Length: 23
 
 #### node
 
-- rdb_vip 192.168.33.30
+- rdb_master_vip 192.168.33.30
 - rdb1 192.168.33.31
 - rdb2 192.168.33.32
 

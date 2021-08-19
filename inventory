@@ -7,7 +7,7 @@ lb1 ansible_host=192.168.33.11
 lb2 ansible_host=192.168.33.12
 
 [lbservers:vars]
-lb_vip=192.168.33.10
+lb_master_vip=192.168.33.10
 
 [appservers]
 app1 ansible_host=192.168.33.21
@@ -18,4 +18,4 @@ rdb1 ansible_host=192.168.33.31
 rdb2 ansible_host=192.168.33.32
 
 [rdbservers:vars]
-rdb_vip=192.168.33.30
+rdb_master_vip=192.168.33.30
