@@ -1,11 +1,5 @@
 ---
 - name: setup virtual machine
   hosts: all
-  become: true
-
-  vars:
-    env_update_all_packages: no
-    auth_admin_user: 'ansible'
-    auth_admin_public_key: '.ssh/id_rsa_ansible.pub'
   roles:
     - ansible-role-osinit
