@@ -51,9 +51,9 @@ Content-Length: 23
 
 ### サーバ共通
 
-- OS に、CentOS 7 を適用
+- OS は、CentOS 7 を適用
 - 仮想マシンのスペックは、1CPU, 256Mbyte メモリ
-- ssh を使用して管理ユーザでログインできる（公開鍵認証）
+- ssh を使用して管理ユーザでログインできる（公開鍵認証） ``` $ ssh -F .ssh/config 192.168.33.11 ```
 
 #### roles
 
@@ -87,7 +87,7 @@ Content-Length: 23
 
 | 項目名                  | 設定値                                                     |
 | ----------------------- | ---------------------------------------------------------- |
-| haproxy_backend_targets | [{name: 'default', listen_port: 5000, protocol: 'http', servers: "{{ groups['appservers'] }}"}] |
+| haproxy_backend_targets | [{name: 'default', listen_port: 5000, protocol: 'http', servers: ['app1','app2']}] |
 | keepalived_cluster_info | {virtual_ipaddr: '192.168.33.10', check_interface: 'eth1'} |
 
 ### Application サーバ
