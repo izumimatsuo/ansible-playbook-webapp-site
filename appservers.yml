@@ -1,6 +1,25 @@
 ---
 - name: deploy application servers
   hosts: appservers
+  tasks:
+    - block:
+      - name: detect app service execute
+        command: docker stack ls
+        changed_when: false
+        register: service_info
+
+      - name: start app service
+        command: docker stack deploy -c /var/lib/stretcher/healthcheck-api/docker-compose.yml sample
+        register: result
+        until: result.rc == 0
+        retries: 9
+        delay: 20
+        when: "'sample' not in service_info.stdout"
+
+      run_once: true
+      delegate_to: "{{ docker_swarm_manager_hostnames[0] }}"
+      when: inventory_hostname == docker_swarm_manager_hostnames[0]
+
   roles:
     - role: ansible-role-docker
       tags: docker
