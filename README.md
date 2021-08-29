@@ -21,7 +21,7 @@ $ python3 -m venv .venv
 $ source .venv/bin/activate
 
 (.venv) $ pip install --upgrade pip
-(.venv) $ pip install ansible testinfra tavern passlib
+(.venv) $ pip install ansible pytest-testinfra tavern passlib
 (.venv) $ ansible-galaxy install -r requirements.yml -p ./roles
 
 (.venv) $ ssh-keygen -t rsa -f .ssh/id_rsa_ansible -C 'ansible user'
@@ -35,7 +35,7 @@ $ source .venv/bin/activate
 (.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://lbservers' tests/test_defaults.py tests/test_lbservers.py
 (.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://appservers' tests/test_defaults.py tests/test_appservers.py
 (.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://rdbservers' tests/test_defaults.py tests/test_rdbservers.py
-(.venv) $ pytest -v tests/test_develop.tavern.yaml
+(.venv) $ pytest -v tests/test_develop.tavern.yml
 ```
 
 curl でも試してみる
