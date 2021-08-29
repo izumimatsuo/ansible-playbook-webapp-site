@@ -1,0 +1,26 @@
+---
+test_name: vagrant environment access test
+
+stages:
+  - name: 200 OK
+    request:
+      url: http://192.168.33.10/healthcheck
+      method: GET
+    response:
+      status_code: 200
+      headers:
+        content-type: application/json
+      json:
+        status: "pass"
+
+  - name: 404 NOT FOUND
+    request:
+      url: http://192.168.33.10/
+      method: GET
+    response:
+      status_code: 404
+      headers:
+        content-type: application/json
+      json:
+        status: "warn"
+

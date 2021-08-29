@@ -21,7 +21,7 @@ $ python3 -m venv .venv
 $ source .venv/bin/activate
 
 (.venv) $ pip install --upgrade pip
-(.venv) $ pip install ansible testinfra passlib
+(.venv) $ pip install ansible testinfra tavern passlib
 (.venv) $ ansible-galaxy install -r requirements.yml -p ./roles
 
 (.venv) $ ssh-keygen -t rsa -f .ssh/id_rsa_ansible -C 'ansible user'
@@ -29,13 +29,18 @@ $ source .venv/bin/activate
 (.venv) $ ansible-playbook site.yml
 ```
 
-正しく環境構築ができているか、アプリケーションが動作するかを検証します
+正しく環境構築ができているか、アプリケーション (API) が動作しているかを検証します
 
 ```
 (.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://lbservers' tests/test_defaults.py tests/test_lbservers.py
 (.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://appservers' tests/test_defaults.py tests/test_appservers.py
 (.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://rdbservers' tests/test_defaults.py tests/test_rdbservers.py
+(.venv) $ pytest -v tests/test_develop.tavern.yaml
+```
 
+curl でも試してみる
+
+```
 (.venv) $ curl -i http://192.168.33.10/healthcheck
 HTTP/1.1 200 OK
 Date: Thu, 11 Feb 2021 02:36:39 GMT
