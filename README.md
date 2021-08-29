@@ -32,9 +32,9 @@ $ source .venv/bin/activate
 正しく環境構築ができているか、アプリケーション (API) が動作しているかを検証します
 
 ```
-(.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://lbservers' tests/test_defaults.py tests/test_lbservers.py
-(.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://appservers' tests/test_defaults.py tests/test_appservers.py
-(.venv) $ pytest -v --sudo --ssh-config=.ssh/config --ansible-inventory=inventory --hosts='ansible://rdbservers' tests/test_defaults.py tests/test_rdbservers.py
+(.venv) $ pytest -v --sudo --hosts='ansible://lbservers' tests/test_defaults.py tests/test_lbservers.py
+(.venv) $ pytest -v --sudo --hosts='ansible://appservers' tests/test_defaults.py tests/test_appservers.py
+(.venv) $ pytest -v --sudo --hosts='ansible://rdbservers' tests/test_defaults.py tests/test_rdbservers.py
 (.venv) $ pytest -v tests/test_develop.tavern.yml
 ```
 
