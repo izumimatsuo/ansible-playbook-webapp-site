@@ -2,7 +2,7 @@
 
 # パッケージがインストールされている
 def test_installed_default_package(host):
-    assert host.package('postgresql96').is_installed
+    assert host.package('postgresql11').is_installed
 
 # 起動すべきサービスが起動している
 def test_running_default_service(host):
