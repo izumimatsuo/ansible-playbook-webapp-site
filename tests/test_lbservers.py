@@ -17,9 +17,9 @@ def test_keepalived_state_and_vip(host):
     addresses = host.interface("eth1").addresses
 
     if 'MASTER' in state.stdout:
-        assert '192.168.33.10' in addresses
+        assert '192.168.56.10' in addresses
     else:
-        assert '192.168.33.10' not in addresses
+        assert '192.168.56.10' not in addresses
 
 
 # 公開サービスが意図したポートでリッスンしている

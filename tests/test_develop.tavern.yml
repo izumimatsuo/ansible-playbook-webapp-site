@@ -4,7 +4,7 @@ test_name: vagrant environment access test
 stages:
   - name: 200 OK
     request:
-      url: http://192.168.33.10/healthcheck
+      url: http://192.168.56.10/healthcheck
       method: GET
     response:
       status_code: 200
@@ -15,7 +15,7 @@ stages:
 
   - name: 404 NOT FOUND
     request:
-      url: http://192.168.33.10/
+      url: http://192.168.56.10/
       method: GET
     response:
       status_code: 404
