@@ -1,7 +1,5 @@
 ---
 - name: setup virtual machine
   hosts: all
-  vars:
-    env_add_packages: ['ca-certificates']
   roles:
     - ansible-role-osinit

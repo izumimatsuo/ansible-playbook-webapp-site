@@ -1,5 +1,6 @@
 ---
 # group vars file for all servers
-env_update_all_packages: no
+env_yum_update: no
+env_add_packages: ['ca-certificates']
 auth_admin_user: 'ansible'
 auth_admin_public_key: '.ssh/id_rsa_ansible.pub'
