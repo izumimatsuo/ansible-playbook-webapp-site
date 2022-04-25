@@ -41,7 +41,7 @@ $ source .venv/bin/activate
 curl でも試してみる
 
 ```
-(.venv) $ curl -i http://192.168.33.10/healthcheck
+(.venv) $ curl -i http://192.168.56.10/healthcheck
 HTTP/1.1 200 OK
 Date: Thu, 11 Feb 2021 02:36:39 GMT
 Content-Type: application/json
@@ -68,7 +68,7 @@ Content-Length: 23
 
 | 項目名                  | 設定値                  |
 | ----------------------- | ----------------------- |
-| env_update_all_packages | no                      |
+| env_yum_update          | no                      |
 | auth_admin_user         | ansible                 |
 | auth_admin_public_key   | .ssh/id_rsa_ansible.pub |
 
@@ -79,9 +79,9 @@ Content-Length: 23
 
 #### node
 
-- lb_master_vip 192.168.33.10
-- lb1 192.168.33.11
-- lb2 192.168.33.12
+- lb_master_vip 192.168.56.10
+- lb1 192.168.56.11
+- lb2 192.168.56.12
 
 #### roles
 
@@ -93,7 +93,7 @@ Content-Length: 23
 | 項目名                  | 設定値                                                     |
 | ----------------------- | ---------------------------------------------------------- |
 | haproxy_backend_targets | [{name: 'default', listen_port: 5000, protocol: 'http', servers: ['app1','app2']}] |
-| keepalived_cluster_info | {virtual_ipaddr: '192.168.33.10', check_interface: 'eth1'} |
+| keepalived_cluster_info | {virtual_ipaddr: '192.168.56.10', check_interface: 'eth1'} |
 
 ### Application サーバ
 
@@ -102,8 +102,8 @@ Content-Length: 23
 
 #### node
 
-- app1 192.168.33.21
-- app2 192.168.33.22
+- app1 192.168.56.21
+- app2 192.168.56.22
 
 #### roles
 
@@ -123,9 +123,9 @@ Content-Length: 23
 
 #### node
 
-- rdb_master_vip 192.168.33.30
-- rdb1 192.168.33.31
-- rdb2 192.168.33.32
+- rdb_master_vip 192.168.56.30
+- rdb1 192.168.56.31
+- rdb2 192.168.56.32
 
 #### roles
 
@@ -136,4 +136,4 @@ Content-Length: 23
 
 | 項目名                 | 設定値                                         |
 | ---------------------- | ---------------------------------------------- |
-| pgsql_pacemaker_cluster_info | {master: {virtual_ipaddr: '192.168.33.30'}} |
+| pgsql_pacemaker_cluster_info | {master: {virtual_ipaddr: '192.168.56.30'}} |
