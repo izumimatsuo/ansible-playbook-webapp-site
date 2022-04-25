@@ -58,7 +58,7 @@ Content-Length: 23
 
 - OS は、CentOS 7 を適用
 - 仮想マシンのスペックは、1CPU, 256Mbyte メモリ
-- ssh を使用して管理ユーザでログインできる（公開鍵認証） ``` $ ssh -F .ssh/config 192.168.33.11 ```
+- ssh を使用して管理ユーザでログインできる（公開鍵認証） ``` $ ssh -F .ssh/config 192.168.56.11 ```
 
 #### roles
 
